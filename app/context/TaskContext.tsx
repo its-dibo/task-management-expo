@@ -9,7 +9,7 @@ import { Task } from "../types/task";
 
 interface ITaskContext {
   tasks: Task[];
-  addTask: (task: Omit<Task, "id">) => void;
+  addTask: (task: Omit<Task, "id">) => number;
   updateTask: (id: number, updates: Partial<Task>) => void;
   deleteTask: (id: number) => void;
 }
@@ -80,6 +80,7 @@ export function TaskProvider({ children }: { children: ReactNode }) {
     (task: Omit<Task, "id">) => {
       const id = Math.max(0, ...tasks.map((t) => t.id)) + 1;
       setTasks((prev) => [...prev, { ...task, id }]);
+      return id;
     },
     [tasks],
   );
