@@ -1,13 +1,24 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import {
+    FlatList,
+    StyleSheet,
+    Text,
+    TouchableOpacity
+} from "react-native";
 import { tasks } from "../data/tasks";
 import { Task } from "../types/task";
 
 export default function TasksList() {
+  const router = useRouter();
+
   const renderItem = ({ item }: { item: Task }) => (
-    <View style={styles.item}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => router.push(`/task/${item.id}`)}
+    >
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.status}>{item.status}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
