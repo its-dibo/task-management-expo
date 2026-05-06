@@ -1,12 +1,13 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import {
+  Alert,
   Button,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { useTasks } from "../context/TaskContext";
 import { Task } from "../types/task";
@@ -60,8 +61,20 @@ export default function TaskDetails() {
     setIsEditing(false);
   };
 
-  // TODO: implement
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    // The alert dialog works in mobile devices only, but doesn't work in web.
+    Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: () => {
+          deleteTask(task.id);
+          router.push("/");
+        },
+      },
+    ]);
+  };
 
   // if isEditing is true, show input fields to edit title and description, otherwise show the task details
   if (isEditing) {
