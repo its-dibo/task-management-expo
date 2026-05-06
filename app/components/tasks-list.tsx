@@ -5,11 +5,12 @@ import {
     Text,
     TouchableOpacity
 } from "react-native";
-import { tasks } from "../data/tasks";
+import { useTasks } from "../context/TaskContext";
 import { Task } from "../types/task";
 
 export default function TasksList() {
   const router = useRouter();
+  const { tasks } = useTasks();
 
   const renderItem = ({ item }: { item: Task }) => (
     <TouchableOpacity
