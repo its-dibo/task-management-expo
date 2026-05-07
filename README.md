@@ -38,3 +38,9 @@
 ## Demo
 
 <a href="./assets/video-iPhone-14-PRO.webm">view the video</a>
+
+## Known issues
+
+- When deleting the app, a modal pops up for confirmation, as we use the built-in Alert component, it works in native devices only, not in web.
+  so, when testing the "delete" functionality, you need to open the app in your mobile phone.
+  other functionalities works the same way in web and native devices.
